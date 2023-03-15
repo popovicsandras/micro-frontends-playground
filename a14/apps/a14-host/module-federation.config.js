@@ -1,4 +1,6 @@
 module.exports = {
   name: 'a14-host',
-  remotes: [],
+  remotes: [
+    'a14-remote',
+  ],
 };
