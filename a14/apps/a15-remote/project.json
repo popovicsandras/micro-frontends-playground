@@ -1,25 +1,28 @@
 {
-  "name": "a14-host",
+  "name": "a15-remote",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/a14-host/src",
+  "sourceRoot": "apps/a15-remote/src",
   "prefix": "a14",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/a14-host",
-        "index": "apps/a14-host/src/index.html",
-        "main": "apps/a14-host/src/main.ts",
-        "polyfills": "apps/a14-host/src/polyfills.ts",
-        "tsConfig": "apps/a14-host/tsconfig.app.json",
+        "outputPath": "dist/apps/a15-remote",
+        "index": "apps/a15-remote/src/index.html",
+        "main": "apps/a15-remote/src/main.ts",
+        "polyfills": "apps/a15-remote/src/polyfills.ts",
+        "tsConfig": "apps/a15-remote/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/a14-host/src/favicon.ico", "apps/a14-host/src/assets"],
-        "styles": ["apps/a14-host/src/styles.scss"],
+        "assets": [
+          "apps/a15-remote/src/favicon.ico",
+          "apps/a15-remote/src/assets"
+        ],
+        "styles": ["apps/a15-remote/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
-          "path": "apps/a14-host/webpack.config.js"
+          "path": "apps/a15-remote/webpack.config.js"
         }
       },
       "configurations": {
@@ -38,13 +41,13 @@
           ],
           "fileReplacements": [
             {
-              "replace": "apps/a14-host/src/environments/environment.ts",
-              "with": "apps/a14-host/src/environments/environment.prod.ts"
+              "replace": "apps/a15-remote/src/environments/environment.ts",
+              "with": "apps/a15-remote/src/environments/environment.prod.ts"
             }
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "apps/a14-host/webpack.prod.config.js"
+            "path": "apps/a15-remote/webpack.prod.config.js"
           }
         },
         "development": {
@@ -59,26 +62,41 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@nrwl/angular:module-federation-dev-server",
+      "executor": "@nrwl/angular:webpack-server",
       "configurations": {
         "production": {
-          "browserTarget": "a14-host:build:production"
+          "browserTarget": "a15-remote:build:production"
         },
         "development": {
-          "browserTarget": "a14-host:build:development"
+          "browserTarget": "a15-remote:build:development"
         }
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4200,
-        "publicHost": "http://localhost:4200",
-        "devRemotes": ["a14-remote"]
+        "port": 4202,
+        "publicHost": "http://localhost:4202"
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "a14-host:build"
+        "browserTarget": "a15-remote:build"
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "a15-remote:build",
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "a15-remote:build:development"
+        },
+        "production": {
+          "buildTarget": "a15-remote:build:production"
+        }
       }
     }
   },

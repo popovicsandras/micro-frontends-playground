@@ -65,7 +65,13 @@
       "defaultConfiguration": "development",
       "options": {
         "port": 5200,
-        "publicHost": "http://localhost:4200"
+        "publicHost": "http://localhost:5200",
+        "devRemotes": [
+          "a15-remote"
+        ],
+        "skipRemotes": [
+          "a14-remote"
+        ]
       }
     },
     "extract-i18n": {
