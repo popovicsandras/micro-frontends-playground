@@ -1,0 +1,98 @@
+{
+  "name": "a15-remote",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/a15-remote/src",
+  "prefix": "a15",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/a15-remote",
+        "index": "apps/a15-remote/src/index.html",
+        "main": "apps/a15-remote/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/a15-remote/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/a15-remote/src/favicon.ico",
+          "apps/a15-remote/src/assets"
+        ],
+        "styles": ["apps/a15-remote/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/a15-remote/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/a15-remote/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "a15-remote:build:production"
+        },
+        "development": {
+          "browserTarget": "a15-remote:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 5201,
+        "publicHost": "http://localhost:5201"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "a15-remote:build"
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "a15-remote:build",
+        "port": 5201
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "a15-remote:build:development"
+        },
+        "production": {
+          "buildTarget": "a15-remote:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
