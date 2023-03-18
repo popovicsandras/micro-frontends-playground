@@ -1,26 +1,26 @@
 {
-  "name": "a15-host",
+  "name": "webcomponent-a15",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/a15-host/src",
+  "sourceRoot": "apps/webcomponent-a15/src",
   "prefix": "a15",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:webpack-browser",
+      "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/a15-host",
-        "index": "apps/a15-host/src/index.html",
-        "main": "apps/a15-host/src/main.ts",
+        "outputPath": "dist/apps/webcomponent-a15",
+        "index": "apps/webcomponent-a15/src/index.html",
+        "main": "apps/webcomponent-a15/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/a15-host/tsconfig.app.json",
+        "tsConfig": "apps/webcomponent-a15/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/a15-host/src/favicon.ico", "apps/a15-host/src/assets"],
-        "styles": ["apps/a15-host/src/styles.scss"],
-        "scripts": [],
-        "customWebpackConfig": {
-          "path": "apps/a15-host/webpack.config.js"
-        }
+        "assets": [
+          "apps/webcomponent-a15/src/favicon.ico",
+          "apps/webcomponent-a15/src/assets"
+        ],
+        "styles": ["apps/webcomponent-a15/src/styles.scss"],
+        "scripts": []
       },
       "configurations": {
         "production": {
@@ -36,10 +36,7 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all",
-          "customWebpackConfig": {
-            "path": "apps/a15-host/webpack.prod.config.js"
-          }
+          "outputHashing": "all"
         },
         "development": {
           "buildOptimizer": false,
@@ -53,27 +50,24 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@nrwl/angular:module-federation-dev-server",
+      "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "a15-host:build:production"
+          "browserTarget": "webcomponent-a15:build:production"
         },
         "development": {
-          "browserTarget": "a15-host:build:development"
+          "browserTarget": "webcomponent-a15:build:development"
         }
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 5200,
-        "publicHost": "http://localhost:5200",
-        "devRemotes": ["a15-remote"],
-        "skipRemotes": ["a14-remote"]
+        "port": 5202
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "a15-host:build"
+        "browserTarget": "webcomponent-a15:build"
       }
     }
   },
