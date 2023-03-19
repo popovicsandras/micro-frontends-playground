@@ -1,11 +1,19 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import {
-  provideRouter,
-  withEnabledBlockingInitialNavigation,
-} from '@angular/router';
+import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
+import { createCustomElement } from '@angular/elements';
+import { createApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 
-bootstrapApplication(AppComponent, {
-  providers: [provideRouter(appRoutes, withEnabledBlockingInitialNavigation())],
-}).catch((err) => console.error(err));
+(async () => {
+  const app = await createApplication({
+    providers: [
+      provideRouter(appRoutes, withEnabledBlockingInitialNavigation())
+    ],
+  });
+
+  const microFrontendApp = createCustomElement(AppComponent, {
+    injector: app.injector,
+  });
+
+  customElements.define('webcomponent-a15', microFrontendApp);
+})();

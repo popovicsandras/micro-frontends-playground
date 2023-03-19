@@ -5,6 +5,10 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { loadRemoteModule } from '@nrwl/angular/mf';
+import {
+  WebComponentWrapper,
+  WebComponentWrapperOptions,
+} from '@angular-architects/module-federation-tools';
 
 if (environment.production) {
   enableProdMode();
@@ -32,6 +36,16 @@ bootstrapApplication(AppComponent, {
                 loadRemoteModule('a15-remote', './Module').then(
                     (m) => m.RemoteEntryComponent
                  ),
+          },
+          {
+            path: 'a15-remote-webcomponent',
+            component: WebComponentWrapper,
+            data: {
+              type: 'script',
+              remoteEntry: 'http://localhost:5202/web-component.js',
+              // exposedModule: './web-components',
+              elementName: 'webcomponent-a15',
+            } as WebComponentWrapperOptions
           }
         ],
         { initialNavigation: 'enabledBlocking' }

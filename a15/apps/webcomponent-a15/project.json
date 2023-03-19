@@ -24,19 +24,8 @@
       },
       "configurations": {
         "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "optimization": false
         },
         "development": {
           "buildOptimizer": false,
@@ -48,6 +37,20 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build-webcomponent": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "echo {options.outputPath}",
+          "cat dist/apps/webcomponent-a15/runtime.*.js > dist/apps/webcomponent-a15/web-component.js",
+          "cat dist/apps/webcomponent-a15/polyfills.*.js >> dist/apps/webcomponent-a15/web-component.js",
+          "cat dist/apps/webcomponent-a15/main.*.js >> dist/apps/webcomponent-a15/web-component.js"
+        ],
+        "parallel": false,
+        "outputPath": "dist/apps/webcomponent-a15"
+      },
+      "dependsOn": ["build"]
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -61,6 +64,13 @@
       },
       "defaultConfiguration": "development",
       "options": {
+        "port": 5202
+      }
+    },
+    "serve-webcomponent": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "webcomponent-a15:build-webcomponent",
         "port": 5202
       }
     },
