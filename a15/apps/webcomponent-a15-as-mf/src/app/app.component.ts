@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'a15-root',
-  template: '<router-outlet></router-outlet>',
+  selector: 'webcomponent-a15-as-mf',
+  template: '<div>It works</div>',
 })
 export class AppComponent {}

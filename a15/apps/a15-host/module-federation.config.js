@@ -1,20 +1,21 @@
-const depConfig = {
-  singleton: true,
-  strictVersion: true,
-  requiredVersion: '>=14.0.0<16.0.0',
-  eager: false
-};
+const coreLibraries = new Set([
+  '@angular/animations',
+  '@angular/core',
+  '@angular/common',
+  '@angular/forms',
+  '@angular/router'
+]);
 
 module.exports = {
   name: 'a15-host',
-  remotes: [
-    'a15-remote',
-  ],
-  additionalShared: [
-    ['@angular/animations', depConfig],
-    ['@angular/core', depConfig],
-    ['@angular/common', depConfig],
-    ['@angular/forms', depConfig]
-    ['@angular/router', depConfig]
-  ]
+  // Share core libraries, and avoid everything else
+  shared: (libraryName, defaultConfig) => {
+    if (coreLibraries.has(libraryName)) {
+      console.log(libraryName, defaultConfig);
+      return defaultConfig;
+    }
+
+    // Returning false means the library is not shared.
+    return false;
+  }
 };
