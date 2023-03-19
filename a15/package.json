@@ -9,6 +9,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-architects/module-federation": "^14.3.14",
     "@angular-architects/module-federation-tools": "^14.3.14",
     "@angular/animations": "~15.2.0",
     "@angular/common": "~15.2.0",

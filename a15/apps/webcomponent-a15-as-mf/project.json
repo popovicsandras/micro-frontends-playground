@@ -1,0 +1,98 @@
+{
+  "name": "webcomponent-a15-as-mf",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/webcomponent-a15-as-mf/src",
+  "prefix": "a15",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/webcomponent-a15-as-mf",
+        "index": "apps/webcomponent-a15-as-mf/src/index.html",
+        "main": "apps/webcomponent-a15-as-mf/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/webcomponent-a15-as-mf/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/webcomponent-a15-as-mf/src/favicon.ico",
+          "apps/webcomponent-a15-as-mf/src/assets"
+        ],
+        "styles": ["apps/webcomponent-a15-as-mf/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/webcomponent-a15-as-mf/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/webcomponent-a15-as-mf/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "webcomponent-a15-as-mf:build:production"
+        },
+        "development": {
+          "browserTarget": "webcomponent-a15-as-mf:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 5202,
+        "publicHost": "http://localhost:5202"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "webcomponent-a15-as-mf:build"
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "webcomponent-a15-as-mf:build",
+        "port": 5202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "webcomponent-a15-as-mf:build:development"
+        },
+        "production": {
+          "buildTarget": "webcomponent-a15-as-mf:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

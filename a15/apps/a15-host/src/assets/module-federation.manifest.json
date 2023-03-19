@@ -1,4 +1,5 @@
 {
   "a14-remote": "http://localhost:4201",
-  "a15-remote": "http://localhost:5201"
+  "a15-remote": "http://localhost:5201",
+  "webcomponent-a15-as-mf": "http://localhost:5202"
 }

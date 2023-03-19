@@ -13,6 +13,7 @@ true}">A14 Host</a>
       <a routerLink="/a14-remote" routerLinkActive="active-link">A14 Remote</a>
       <a routerLink="/a15-remote" routerLinkActive="active-link">A15 Remote</a>
       <a routerLink="/a15-remote-webcomponent" routerLinkActive="active-link">A15 Remote as web component</a>
+      <a routerLink="/a15-remote-webcomponent-as-mf" routerLinkActive="active-link">A15 Remote module federated web component </a>
     </div>
     <router-outlet></router-outlet>
   `,
