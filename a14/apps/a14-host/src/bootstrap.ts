@@ -46,6 +46,17 @@ bootstrapApplication(AppComponent, {
               // exposedModule: './web-components',
               elementName: 'webcomponent-a15',
             } as WebComponentWrapperOptions
+          },
+          {
+            path: 'a15-remote-webcomponent-as-mf',
+            component: WebComponentWrapper,
+            data: {
+              type: 'module',
+              remoteEntry: 'http://localhost:5203/remoteEntry.mjs',
+              remoteName: 'remote-webcomponent-a15-as-mf',
+              exposedModule: './web-components',
+              elementName: 'webcomponent-a15-as-mf',
+            } as WebComponentWrapperOptions
           }
         ],
         { initialNavigation: 'enabledBlocking' }
