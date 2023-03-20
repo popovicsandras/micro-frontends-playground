@@ -7,18 +7,9 @@ const coreLibraries = new Set([
 ]);
 
 module.exports = {
-  name: 'remoteWebcomponentA15AsMf',
-  library: { type: "var", name: "remoteWebcomponentA15AsMf" },
+  name: 'remote-webcomponent-a15-as-mf',
   exposes: {
     './web-components': 'apps/webcomponent-a15-as-mf/src/bootstrap.ts',
   },
-  shared: (libraryName, defaultConfig) => {
-    if (coreLibraries.has(libraryName)) {
-      console.log(libraryName, defaultConfig);
-      return defaultConfig;
-    }
-
-    // Returning false means the library is not shared.
-    return false;
-  }
+  additionalShared: [...coreLibraries]
 };

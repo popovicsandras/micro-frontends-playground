@@ -34,20 +34,13 @@ export const appRoutes: Route[] = [
       elementName: 'webcomponent-a15',
     } as WebComponentWrapperOptions
   },
-  // {
-  //   path: 'a15-remote-webcomponent-as-mf',
-  //   loadChildren: () =>
-  //     loadRemoteModule('webcomponent-a15-as-mf', './Module').then(
-  //       (m) => m.RemoteEntryModule
-  //     ),
-  // },
   {
     path: 'a15-remote-webcomponent-as-mf',
     component: WebComponentWrapper,
     data: {
       type: 'module',
       remoteEntry: 'http://localhost:5203/remoteEntry.mjs',
-      remoteName: 'remoteWebcomponentA15AsMf',
+      remoteName: 'remote-webcomponent-a15-as-mf',
       exposedModule: './web-components',
       elementName: 'webcomponent-a15-as-mf',
     } as WebComponentWrapperOptions
